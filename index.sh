@@ -16,6 +16,8 @@
     . ./modules/install/supervisor.install.sh
     . ./modules/install/git.install.sh
     . ./modules/install/node.install.sh
+    . ./modules/install/yarn.install.sh
+    . ./modules/install/ts-node.install.sh
     . ./modules/install/snap.install.sh
     . ./modules/install/certbot.install.sh
 ###? 1.2.4 Prompts

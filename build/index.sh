@@ -99,6 +99,34 @@ install_node () {
     print ${SYMBOL_OK} "NodeJS installed."
 }
 
+is_yarn_installed () {
+    if command -v yarn >/dev/null 2>&1; then
+        echo "true"
+    else
+        echo "false"
+    fi
+}
+
+install_yarn () {
+    print "Installing yarn..."
+    sudo npm i -g yarn
+    print ${SYMBOL_OK} "Yarn installed."
+}
+
+is_tsnode_installed () {
+    if command -v yarn >/dev/null 2>&1; then
+        echo "true"
+    else
+        echo "false"
+    fi
+}
+
+install_tsnode () {
+    print "Installing TS Node..."
+    sudo npm i -g ts-node typescript @types/node
+    print ${SYMBOL_OK} "TS Node installed."
+}
+
 is_snap_installed () {
     if command -v snap >/dev/null 2>&1; then
         echo "true"
@@ -166,6 +194,14 @@ install_services () {
         install_node
     fi
 
+    if ! $(is_yarn_installed) -eq "true"; then
+        install_yarn
+    fi
+
+    if ! $(is_tsnode_installed) -eq "true"; then
+        install_tsnode
+    fi
+
     if ! $(is_snap_installed) -eq "true"; then
         install_snap
     fi
@@ -194,6 +230,8 @@ verify_services () {
     verify_service "$(is_supervisor_installed)" "Supervisor"
     verify_service "$(is_git_installed)" "Git"
     verify_service "$(is_node_installed)" "NodeJS"
+    verify_service "$(is_yarn_installed)" "Yarn"
+    verify_service "$(is_tsnode_installed)" "TS Node"
     verify_service "$(is_snap_installed)" "Snap"
     verify_service "$(is_certbot_installed)" "Certbot"
 }

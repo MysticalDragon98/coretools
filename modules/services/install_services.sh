@@ -17,6 +17,14 @@ install_services () {
         install_node
     fi
 
+    if ! $(is_yarn_installed) -eq "true"; then
+        install_yarn
+    fi
+
+    if ! $(is_tsnode_installed) -eq "true"; then
+        install_tsnode
+    fi
+
     if ! $(is_snap_installed) -eq "true"; then
         install_snap
     fi
