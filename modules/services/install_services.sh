@@ -13,6 +13,10 @@ install_services () {
         install_git
     fi
 
+    if ! $(is_snap_installed) -eq "true"; then
+        install_snap
+    fi
+
     if ! $(is_certbot_installed) -eq "true"; then
         install_certbot
     fi

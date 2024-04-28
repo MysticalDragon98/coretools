@@ -8,6 +8,7 @@ is_certbot_installed () {
 
 install_certbot () {
     print "Installing certbot..."
-    apt_install certbot
+    sudo snap install --classic certbot
+    sudo ln -s /snap/bin/certbot /usr/bin/certbot
     print ${SYMBOL_OK} "Certbot installed."
 }
