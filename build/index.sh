@@ -147,6 +147,37 @@ init_fs () {
     print "${SYMBOL_OK} File system initialized at $folder..."
 }
 
+create_user () {
+    user=$1
+    password=$2
+
+    useradd $user
+
+    echo $password | passwd $user --stdin
+}
+
+exists_user () {
+    $user=$1
+
+    if id -u $user >/dev/null 2>&1; then
+        echo "true"
+    else
+        echo "false"
+    fi
+}
+
+ADMIN_USER=admin
+
+init_admin_user () {
+    if $(exists_user $ADMIN_USER); then
+        print ${SYMBOL_OK} " Admin user is setup"
+    else
+        print "Creating admin user..."
+        create_user $ADMIN_USER
+        print ${SYMBOL_OK} " Admin user created."
+    fi
+}
+
 #? Main
 verify_services
 install_services

@@ -22,6 +22,10 @@
     . ./modules/services/verify_services.sh
 ###? 1.2.6 FS
     . ./modules/fs/init_fs.sh
+###? 1.2.7 Users
+    . ./modules/users/create_user.sh
+    . ./modules/users/exists_user.sh
+    . ./modules/users/init_admin_user.sh
 
 #? Main
 verify_services
