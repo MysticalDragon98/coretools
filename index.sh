@@ -26,4 +26,6 @@
 #? Main
 verify_services
 install_services
+
 init_fs /home/@coretools
+init_admin_user
