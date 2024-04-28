@@ -153,7 +153,6 @@ init_fs () {
 
 create_user () {
     user=$1
-    password=$2
 
     sudo useradd --shell /bin/bash $user
     sudo mkdir /home/$user
@@ -175,12 +174,12 @@ exists_user () {
 init_admin_bashrc () {
     local user=$1
 
-    if [ -f "$user/.bashrc" ]; then
+    if [ -f "$BASE_PATH/.bashrc" ]; then
         print ${SYMBOL_OK} "Admin user .bashrc is setup"
     else
         print "Setting up admin user .bashrc..."
         
-        sudo curl -s $FILE_BASHRC > /home/$ADMIN_USER/.bashrc
+        sudo curl -s $FILE_BASHRC > $BASE_PATH/.bashrc
 
         print ${SYMBOL_OK} "Admin user .bashrc setup."
     fi
@@ -190,11 +189,11 @@ init_admin_user () {
     user=$1
 
     if $(exists_user $user) -eq "true"; then
-        print ${SYMBOL_OK} "Admin user `$user` is setup"
+        print ${SYMBOL_OK} "Admin user $user is setup"
     else
         print "Creating admin user..."
         create_user $user
-        print ${SYMBOL_OK} "Admin user  `$user` created."
+        print ${SYMBOL_OK} "Admin user $user created."
     fi
 
     init_admin_bashrc $user
@@ -205,4 +204,4 @@ verify_services
 install_services
 
 init_fs $BASE_PATH
-init_admin_user "admin"
+init_admin_user admin

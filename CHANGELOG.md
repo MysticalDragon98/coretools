@@ -17,6 +17,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 
 ### Changed
+- [2024-04-28] Admin's .bashrc is now created on BASE_PATH
 - [2024-04-28] Changed init_fs from coretools to admin home
 
 ## [0.1.0] - 2024-04-28 (The Initial Update)
