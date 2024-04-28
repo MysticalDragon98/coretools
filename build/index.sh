@@ -180,5 +180,5 @@ init_admin_user () {
 verify_services
 install_services
 
-init_fs /home/@coretools
-init_admin_user
+init_admin_user admin
+init_fs BASE_PATH

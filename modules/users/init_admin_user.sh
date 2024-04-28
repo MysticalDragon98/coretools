@@ -1,11 +1,13 @@
-ADMIN_USER=admin
-
 init_admin_user () {
-    if $(exists_user $ADMIN_USER) -eq "true"; then
-        print ${SYMBOL_OK} "Admin user is setup"
+    user=$1
+
+    if $(exists_user $user) -eq "true"; then
+        print ${SYMBOL_OK} "Admin user `$user` is setup"
     else
         print "Creating admin user..."
-        create_user $ADMIN_USER
-        print ${SYMBOL_OK} "Admin user created."
+        create_user $user
+        print ${SYMBOL_OK} "Admin user  `$user` created."
     fi
+
+    init_admin_bashrc $user
 }

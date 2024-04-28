@@ -1,0 +1,1 @@
+FILE_BASHRC="https://raw.githubusercontent.com/MysticalDragon98/coretools/master/files/.bashrc?token=$(date +%s)"

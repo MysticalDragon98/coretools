@@ -3,6 +3,8 @@
     . ./consts/colors.const.sh
     . ./consts/styles.const.sh
     . ./consts/symbols.const.sh
+    . ./consts/files.const.sh
+    . ./consts/paths.const.sh
 ##? 1.2 Modules
 ###? 1.2.1 Stdout
     . ./modules/stdout/print.sh
@@ -31,5 +33,5 @@
 verify_services
 install_services
 
-init_fs /home/@coretools
-init_admin_user
+init_fs $BASE_PATH
+init_admin_user admin
