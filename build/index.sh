@@ -84,6 +84,35 @@ install_git () {
     print ${SYMBOL_OK} "Git installed."
 }
 
+is_snap_installed () {
+    if command -v snap >/dev/null 2>&1; then
+        echo "true"
+    else
+        echo "false"
+    fi
+}
+
+install_snap () {
+    print "Installing snap..."
+    apt_install snapd
+    print ${SYMBOL_OK} "Snap installed."
+}
+
+is_certbot_installed () {
+    if command -v certbot >/dev/null 2>&1; then
+        echo "true"
+    else
+        echo "false"
+    fi
+}
+
+install_certbot () {
+    print "Installing certbot..."
+    sudo snap install --classic certbot
+    sudo ln -s /snap/bin/certbot /usr/bin/certbot
+    print ${SYMBOL_OK} "Certbot installed."
+}
+
 prompt_yn () {
     message=$1
     
@@ -118,6 +147,14 @@ install_services () {
         install_git
     fi
 
+    if ! $(is_snap_installed) -eq "true"; then
+        install_snap
+    fi
+
+    if ! $(is_certbot_installed) -eq "true"; then
+        install_certbot
+    fi
+
     print "${SYMBOL_OK} All services has been installed."
 }
 
@@ -137,6 +174,8 @@ verify_services () {
     verify_service "$(is_nginx_installed)" "Nginx"
     verify_service "$(is_supervisor_installed)" "Supervisor"
     verify_service "$(is_git_installed)" "Git"
+    verify_service "$(is_snap_installed)" "Snap"
+    verify_service "$(is_certbot_installed)" "Certbot"
 }
 
 init_fs () {
