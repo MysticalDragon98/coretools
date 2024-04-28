@@ -1,5 +1,5 @@
 is_tsnode_installed () {
-    if command -v yarn >/dev/null 2>&1; then
+    if command -v ts-node >/dev/null 2>&1; then
         echo "true"
     else
         echo "false"
