@@ -181,4 +181,4 @@ verify_services
 install_services
 
 init_admin_user admin
-init_fs BASE_PATH
+init_fs $BASE_PATH
