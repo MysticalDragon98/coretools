@@ -115,6 +115,8 @@ install_services () {
             install_git
         fi
     fi
+
+    print "Services installed."
 }
 
 verify_service () {
