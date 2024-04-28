@@ -1,6 +1,5 @@
 create_user () {
     user=$1
-    password=$2
 
     sudo useradd --shell /bin/bash $user
     sudo mkdir /home/$user

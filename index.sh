@@ -35,4 +35,4 @@ verify_services
 install_services
 
 init_fs $BASE_PATH
-init_admin_user "admin"
+init_admin_user admin
