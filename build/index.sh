@@ -84,6 +84,21 @@ install_git () {
     print ${SYMBOL_OK} "Git installed."
 }
 
+is_node_installed () {
+    if command -v node >/dev/null 2>&1; then
+        echo "true"
+    else
+        echo "false"
+    fi
+}
+
+install_node () {
+    print "Installing node..."
+    curl -fsSL https://deb.nodesource.com/setup_lts.x | sudo -E bash -
+    apt_install nodejs
+    print ${SYMBOL_OK} "NodeJS installed."
+}
+
 is_snap_installed () {
     if command -v snap >/dev/null 2>&1; then
         echo "true"
@@ -147,6 +162,10 @@ install_services () {
         install_git
     fi
 
+    if ! $(is_node_installed) -eq "true"; then
+        install_node
+    fi
+
     if ! $(is_snap_installed) -eq "true"; then
         install_snap
     fi
@@ -174,6 +193,7 @@ verify_services () {
     verify_service "$(is_nginx_installed)" "Nginx"
     verify_service "$(is_supervisor_installed)" "Supervisor"
     verify_service "$(is_git_installed)" "Git"
+    verify_service "$(is_node_installed)" "NodeJS"
     verify_service "$(is_snap_installed)" "Snap"
     verify_service "$(is_certbot_installed)" "Certbot"
 }
@@ -181,6 +201,7 @@ verify_services () {
 init_fs () {
     folder=$1
 
+    mkdir -p $folder/.bin
     mkdir -p $folder/services
     mkdir -p $folder/logs
     

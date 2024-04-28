@@ -15,6 +15,7 @@
     . ./modules/install/nginx.install.sh
     . ./modules/install/supervisor.install.sh
     . ./modules/install/git.install.sh
+    . ./modules/install/node.install.sh
     . ./modules/install/snap.install.sh
     . ./modules/install/certbot.install.sh
 ###? 1.2.4 Prompts

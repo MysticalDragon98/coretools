@@ -13,6 +13,10 @@ install_services () {
         install_git
     fi
 
+    if ! $(is_node_installed) -eq "true"; then
+        install_node
+    fi
+
     if ! $(is_snap_installed) -eq "true"; then
         install_snap
     fi

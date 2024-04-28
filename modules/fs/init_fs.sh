@@ -1,6 +1,7 @@
 init_fs () {
     folder=$1
 
+    mkdir -p $folder/.bin
     mkdir -p $folder/services
     mkdir -p $folder/logs
     
