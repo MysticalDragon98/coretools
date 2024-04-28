@@ -13,5 +13,9 @@ install_services () {
         install_git
     fi
 
+    if ! $(is_certbot_installed) -eq "true"; then
+        install_certbot
+    fi
+
     print "${SYMBOL_OK} All services has been installed."
 }
