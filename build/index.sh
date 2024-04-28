@@ -172,6 +172,20 @@ exists_user () {
     fi
 }
 
+init_admin_bashrc () {
+    local user=$1
+
+    if [ -f "$user/.bashrc" ]; then
+        print ${SYMBOL_OK} "Admin user .bashrc is setup"
+    else
+        print "Setting up admin user .bashrc..."
+        
+        sudo curl -s $FILE_BASHRC > /home/$ADMIN_USER/.bashrc
+
+        print ${SYMBOL_OK} "Admin user .bashrc setup."
+    fi
+}
+
 init_admin_user () {
     user=$1
 
@@ -191,4 +205,4 @@ verify_services
 install_services
 
 init_fs $BASE_PATH
-init_admin_user admin
+init_admin_user "admin"

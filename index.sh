@@ -27,6 +27,7 @@
 ###? 1.2.7 Users
     . ./modules/users/create_user.sh
     . ./modules/users/exists_user.sh
+    . ./modules/users/init_admin_bashrc.sh
     . ./modules/users/init_admin_user.sh
 
 #? Main
@@ -34,4 +35,4 @@ verify_services
 install_services
 
 init_fs $BASE_PATH
-init_admin_user admin
+init_admin_user "admin"
