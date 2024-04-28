@@ -9,4 +9,5 @@ is_git_installed () {
 install_git () {
     print "Installing git..."
     apt_install git
+    print ${SYMBOL_OK} "Git installed."
 }

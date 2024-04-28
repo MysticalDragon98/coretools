@@ -12,4 +12,5 @@ is_supervisor_installed () {
 install_supervisor () {
     print "Installing Supervisor..."
     apt_install supervisor
+    print "${SYMBOL_OK} Supervisor installed."
 }

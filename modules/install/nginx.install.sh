@@ -12,4 +12,5 @@ is_nginx_installed () {
 install_nginx () {
     print "Installing Nginx..."
     apt_install nginx
+    print "${SYMBOL_OK} Nginx installed."
 }
