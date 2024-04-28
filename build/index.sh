@@ -9,6 +9,7 @@ SYMBOL_ERROR=$COLOR_RED'✖'$STYLE_NONE
 SYMBOL_QUESTION=$COLOR_BLUE'?'$STYLE_NONE
 
 FILE_BASHRC="https://raw.githubusercontent.com/MysticalDragon98/coretools/master/files/.bashrc?token=$(date +%s)"
+FILE_PROFILE="https://raw.githubusercontent.com/MysticalDragon98/coretools/master/files/.profile?token=$(date +%s)"
 
 BASE_PATH=/home/admin
 
@@ -182,6 +183,16 @@ init_admin_bashrc () {
         sudo curl -s $FILE_BASHRC > $BASE_PATH/.bashrc
 
         print ${SYMBOL_OK} "Admin user .bashrc setup."
+    fi
+
+    if [ -f "$BASE_PATH/.profile" ]; then
+        print ${SYMBOL_OK} "Admin user .profile is setup"
+    else
+        print "Setting up admin user .profile..."
+        
+        sudo curl -s $FILE_PROFILE > $BASE_PATH/.profile
+
+        print ${SYMBOL_OK} "Admin user .profile setup."
     fi
 }
 
