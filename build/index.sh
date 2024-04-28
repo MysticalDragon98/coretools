@@ -45,6 +45,7 @@ is_nginx_installed () {
 install_nginx () {
     print "Installing Nginx..."
     apt_install nginx
+    print "${SYMBOL_OK} Nginx installed."
 }
 
 SUPERVISOR_FOLDER=/etc/supervisor
@@ -61,6 +62,7 @@ is_supervisor_installed () {
 install_supervisor () {
     print "Installing Supervisor..."
     apt_install supervisor
+    print "${SYMBOL_OK} Supervisor installed."
 }
 
 is_git_installed () {
@@ -74,6 +76,7 @@ is_git_installed () {
 install_git () {
     print "Installing git..."
     apt_install git
+    print ${SYMBOL_OK} "Git installed."
 }
 
 prompt_yn () {
@@ -99,24 +102,18 @@ install_services () {
     print "Installing missing services..."
     
     if ! $(is_nginx_installed) -eq "true"; then
-        if $(prompt_installation_yn "Nginx") -eq "true"; then
-            install_nginx
-        fi
+        install_nginx
     fi
 
     if ! $(is_supervisor_installed) -eq "true"; then
-        if $(prompt_installation_yn "Supervisor") -eq "true"; then
-            install_supervisor
-        fi
+        install_supervisor
     fi
 
     if ! $(is_git_installed) -eq "true"; then
-        if $(prompt_installation_yn "Git") -eq "true"; then
-            install_git
-        fi
+        install_git
     fi
 
-    print "Services installed."
+    print "${SYMBOL_OK} All services has been installed."
 }
 
 verify_service () {
@@ -140,14 +137,14 @@ verify_services () {
 init_fs () {
     folder=$1
 
-    print "Initializing file system at $folder..."
-
     mkdir -p $folder/services
     mkdir -p $folder/logs
     
     mkdir -p $folder/config
     mkdir -p $folder/config/nginx
     mkdir -p $folder/config/supervisor
+
+    print "${SYMBOL_OK} File system initialized at $folder..."
 }
 
 #? Main
