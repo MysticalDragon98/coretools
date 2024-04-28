@@ -21,5 +21,6 @@
     . ./modules/services/verify_service.sh
     . ./modules/services/verify_services.sh
 
+#? Main
 verify_services
 install_services
