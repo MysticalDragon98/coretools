@@ -1,7 +1,7 @@
 init_fs () {
     folder=$1
 
-    print("Initializing file system at $folder...")
+    print "Initializing file system at $folder..."
 
     mkdir -p $folder/services
     mkdir -p $folder/logs
