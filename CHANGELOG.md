@@ -9,6 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 
 ### Added
+- [2024-04-28] Add autogeneration of .profile file when user is installed
 - [2024-04-28] Add support for .bashrc if it doesnt exist
 - [2024-04-28] Add admin user creation
 - [2024-04-28] Add pretty print to the installations and init_fs processes

@@ -10,4 +10,14 @@ init_admin_bashrc () {
 
         print ${SYMBOL_OK} "Admin user .bashrc setup."
     fi
+
+    if [ -f "$BASE_PATH/.profile" ]; then
+        print ${SYMBOL_OK} "Admin user .profile is setup"
+    else
+        print "Setting up admin user .profile..."
+        
+        sudo curl -s $FILE_PROFILE > $BASE_PATH/.profile
+
+        print ${SYMBOL_OK} "Admin user .profile setup."
+    fi
 }
