@@ -8,6 +8,10 @@ SYMBOL_OK=$COLOR_GREEN'✔'$STYLE_NONE
 SYMBOL_ERROR=$COLOR_RED'✖'$STYLE_NONE
 SYMBOL_QUESTION=$COLOR_BLUE'?'$STYLE_NONE
 
+FILE_BASHRC="https://raw.githubusercontent.com/MysticalDragon98/coretools/master/files/.bashrc?token=$(date +%s)"
+
+BASE_PATH=/home/admin
+
 print () {
     local message="$@"
 
@@ -151,7 +155,11 @@ create_user () {
     user=$1
     password=$2
 
-    sudo useradd $user
+    sudo useradd --shell /bin/bash $user
+    sudo mkdir /home/$user
+
+    sudo chown -R $user:$user /home/$user
+    sudo mkdir -p /home/$user/.ssh
 }
 
 exists_user () {
@@ -164,21 +172,23 @@ exists_user () {
     fi
 }
 
-ADMIN_USER=admin
-
 init_admin_user () {
-    if $(exists_user $ADMIN_USER) -eq "true"; then
-        print ${SYMBOL_OK} "Admin user is setup"
+    user=$1
+
+    if $(exists_user $user) -eq "true"; then
+        print ${SYMBOL_OK} "Admin user `$user` is setup"
     else
         print "Creating admin user..."
-        create_user $ADMIN_USER
-        print ${SYMBOL_OK} "Admin user created."
+        create_user $user
+        print ${SYMBOL_OK} "Admin user  `$user` created."
     fi
+
+    init_admin_bashrc $user
 }
 
 #? Main
 verify_services
 install_services
 
-init_admin_user admin
 init_fs $BASE_PATH
+init_admin_user admin
