@@ -20,7 +20,10 @@
     . ./modules/services/install_services.sh
     . ./modules/services/verify_service.sh
     . ./modules/services/verify_services.sh
+###? 1.2.6 FS
+    . ./modules/fs/init_fs.sh
 
 #? Main
 verify_services
 install_services
+init_fs /home/@coretools

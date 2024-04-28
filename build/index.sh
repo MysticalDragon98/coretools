@@ -20,7 +20,7 @@ apt_update () {
     if [ $APT_APT_UPDATE_IS_ALREADY_UPDATED -eq 1 ]; then
         return 1
     fi
-
+    
     sudo apt-get update
     APT_APT_UPDATE_IS_ALREADY_UPDATED=1
 }
@@ -137,6 +137,20 @@ verify_services () {
     verify_service "$(is_git_installed)" "Git"
 }
 
+init_fs () {
+    folder=$1
+
+    print("Initializing file system at $folder...")
+
+    mkdir -p $folder/services
+    mkdir -p $folder/logs
+    
+    mkdir -p $folder/config
+    mkdir -p $folder/config/nginx
+    mkdir -p $folder/config/supervisor
+}
+
 #? Main
 verify_services
 install_services
+init_fs /home/@coretools
