@@ -1,3 +1,5 @@
+ADMIN_USER_VAR=admin
+
 COLOR_GREEN='\033[38;5;118m'
 COLOR_RED='\033[38;5;196m'
 COLOR_BLUE='\033[38;5;39m'
@@ -11,7 +13,7 @@ SYMBOL_QUESTION=$COLOR_BLUE'?'$STYLE_NONE
 FILE_BASHRC="https://raw.githubusercontent.com/MysticalDragon98/coretools/master/files/.bashrc?token=$(date +%s)"
 FILE_PROFILE="https://raw.githubusercontent.com/MysticalDragon98/coretools/master/files/.profile?token=$(date +%s)"
 
-BASE_PATH=/home/admin
+BASE_PATH=/home/$ADMIN_USER_VAR
 SCRIPTS_PATH=$BASE_PATH/.scripts
 AFTER_LOGIN_SCRIPT_PATH=$SCRIPTS_PATH/after-login.sh
 
@@ -359,7 +361,8 @@ is_scripts_installed () {
 }
 
 install_scripts () {
-    git clone $SCRIPTS_REPO $SCRIPTS_PATH
+    sudo git clone $SCRIPTS_REPO $SCRIPTS_PATH
+    chown -R $ADMIN_USER_VAR:$ADMIN_USER_VAR $SCRIPTS_PATH
     
     ensure_bash_after_login_script
 }
@@ -396,12 +399,6 @@ ensure_bash_after_login_script () {
     fi
 }
 
-set_user () {
-    local user=$1
-
-    sudo su $user
-}
-
 #? Main
 verify_services
 install_services
@@ -409,10 +406,6 @@ install_services
 init_fs $BASE_PATH
 
 init_admin_user admin
-echo "Changing users..."
-set_user admin
-echo "User changed to admin"
-echo $(whoami)
 
 verify_coretools
 install_coretools

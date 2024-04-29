@@ -1,0 +1,1 @@
+ADMIN_USER_VAR=admin
