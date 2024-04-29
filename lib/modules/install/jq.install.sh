@@ -1,5 +1,5 @@
 is_jq_installed () {
-    if command -v git >/dev/null 2>&1; then
+    if command -v jq >/dev/null 2>&1; then
         echo "true"
     else
         echo "false"

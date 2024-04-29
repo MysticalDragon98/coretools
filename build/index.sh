@@ -91,7 +91,7 @@ install_git () {
 }
 
 is_jq_installed () {
-    if command -v git >/dev/null 2>&1; then
+    if command -v jq >/dev/null 2>&1; then
         echo "true"
     else
         echo "false"
@@ -230,6 +230,10 @@ install_services () {
         install_certbot
     fi
 
+    if ! $(is_jq_installed) -eq "true"; then
+        install_jq
+    fi
+
     print "${SYMBOL_OK} All services has been installed."
 }
 
@@ -254,6 +258,7 @@ verify_services () {
     verify_service "$(is_tsnode_installed)" "TS Node"
     verify_service "$(is_snap_installed)" "Snap"
     verify_service "$(is_certbot_installed)" "Certbot"
+    verify_service "$(is_jq_installed)" "JQ"
 }
 
 init_fs () {
