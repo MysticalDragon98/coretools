@@ -17,6 +17,7 @@
 . ./lib/modules/install/ts-node.install.sh
 . ./lib/modules/install/snap.install.sh
 . ./lib/modules/install/certbot.install.sh
+. ./lib/modules/install/sysstat.install.sh
 . ./lib/modules/prompts/prompt_yn.sh
 . ./lib/modules/prompts/prompt_installation_yn.sh
 . ./lib/modules/services/install_services.sh

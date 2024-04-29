@@ -37,5 +37,9 @@ install_services () {
         install_jq
     fi
 
+    if ! $(is_sysstat_installed) -eq "true"; then
+        install_sysstat
+    fi
+
     print "${SYMBOL_OK} All services has been installed."
 }

@@ -176,6 +176,20 @@ install_certbot () {
     print ${SYMBOL_OK} "Certbot installed."
 }
 
+is_sysstat_installed () {
+    if command -v mpstat >/dev/null 2>&1; then
+        echo "true"
+    else
+        echo "false"
+    fi
+}
+
+install_sysstat () {
+    print "Installing sysstat..."
+    apt_install sysstat
+    print ${SYMBOL_OK} "Sysstat installed."
+}
+
 prompt_yn () {
     message=$1
     
@@ -234,6 +248,10 @@ install_services () {
         install_jq
     fi
 
+    if ! $(is_sysstat_installed) -eq "true"; then
+        install_sysstat
+    fi
+
     print "${SYMBOL_OK} All services has been installed."
 }
 
@@ -259,6 +277,7 @@ verify_services () {
     verify_service "$(is_snap_installed)" "Snap"
     verify_service "$(is_certbot_installed)" "Certbot"
     verify_service "$(is_jq_installed)" "JQ"
+    verify_service "$(is_sysstat_installed)" "JQ"
 }
 
 init_fs () {
