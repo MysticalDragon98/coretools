@@ -41,5 +41,9 @@ install_services () {
         install_sysstat
     fi
 
+    if ! $(is_make_installed) -eq "true"; then
+        install_make
+    fi
+
     print "${SYMBOL_OK} All services has been installed."
 }

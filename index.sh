@@ -14,6 +14,7 @@
 . ./lib/modules/install/jq.install.sh
 . ./lib/modules/install/node.install.sh
 . ./lib/modules/install/yarn.install.sh
+. ./lib/modules/install/make.install.sh
 . ./lib/modules/install/ts-node.install.sh
 . ./lib/modules/install/snap.install.sh
 . ./lib/modules/install/certbot.install.sh

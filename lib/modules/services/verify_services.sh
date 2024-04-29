@@ -11,4 +11,5 @@ verify_services () {
     verify_service "$(is_certbot_installed)" "Certbot"
     verify_service "$(is_jq_installed)" "JQ"
     verify_service "$(is_sysstat_installed)" "Sysstat"
+    verify_service "$(is_make_installed)" "Make"
 }
