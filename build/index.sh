@@ -323,7 +323,7 @@ is_user_sudoer () {
     if [ -f $sudoers_file ]; then
         local sudoers=$(sudo cat $sudoers_file | grep $user)
         
-        if "$sudoers" -eq "$user ALL=(ALL) NOPASSWD:ALL"; then
+        if [ -n "$sudoers" ]; then
             echo "true"
         else
             echo "false"
