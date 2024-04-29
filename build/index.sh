@@ -12,7 +12,7 @@ FILE_BASHRC="https://raw.githubusercontent.com/MysticalDragon98/coretools/master
 FILE_PROFILE="https://raw.githubusercontent.com/MysticalDragon98/coretools/master/files/.profile?token=$(date +%s)"
 
 BASE_PATH=/home/admin
-SCRIPTS_PATH=/home/.scripts
+SCRIPTS_PATH=/home/admin/.scripts
 
 SCRIPTS_REPO=https://github.com/MysticalDragon98/coretools-scripts
 
