@@ -323,10 +323,10 @@ is_user_sudoer () {
     if [ -f $sudoers_file ]; then
         local sudoers=$(sudo cat $sudoers_file | grep $user)
         
-        if [ -n "$sudoers" ]; then
-            echo "false"
-        else
+        if "$sudoers" -eq "$user ALL=(ALL) NOPASSWD:ALL"; then
             echo "true"
+        else
+            echo "false"
         fi
     else
         echo "false"
@@ -337,7 +337,7 @@ ensure_admin_sudo () {
     local user=$1
     local sudoers_file="/etc/sudoers.d/admin"
 
-    if $(is_user_sudoer $user) == "true"; then
+    if $(is_user_sudoer $user) -eq "true"; then
         print ${SYMBOL_OK} "Admin user $user is a sudoer"
     else
         print "Setting $user as a sudoer..."
