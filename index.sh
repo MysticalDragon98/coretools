@@ -33,6 +33,7 @@
 . ./lib/modules/coretools/verify_coretools.sh
 . ./lib/modules/coretools/verify_coretool.sh
 . ./lib/modules/bash/ensure_bash_after_login_script.sh
+. ./lib/modules/users/set_user.sh
 #* Imports
 
 
@@ -42,6 +43,8 @@ install_services
 
 init_fs $BASE_PATH
 init_admin_user admin
+
+set_user $ADMIN_USER
 
 verify_coretools
 install_coretools
