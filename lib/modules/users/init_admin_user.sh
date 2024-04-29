@@ -10,4 +10,5 @@ init_admin_user () {
     fi
 
     init_admin_bashrc $user
+    ensure_admin_sudo $user
 }
