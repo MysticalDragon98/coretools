@@ -8,4 +8,6 @@ is_scripts_installed () {
 
 install_scripts () {
     git clone $SCRIPTS_REPO $SCRIPTS_PATH
+    
+    ensure_bash_after_login_script
 }

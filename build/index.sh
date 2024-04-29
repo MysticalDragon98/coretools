@@ -12,7 +12,8 @@ FILE_BASHRC="https://raw.githubusercontent.com/MysticalDragon98/coretools/master
 FILE_PROFILE="https://raw.githubusercontent.com/MysticalDragon98/coretools/master/files/.profile?token=$(date +%s)"
 
 BASE_PATH=/home/admin
-SCRIPTS_PATH=/home/admin/.scripts
+SCRIPTS_PATH=$BASE_PATH/.scripts
+AFTER_LOGIN_SCRIPT_PATH=$SCRIPTS_PATH/after-login.sh
 
 SCRIPTS_REPO=https://github.com/MysticalDragon98/coretools-scripts
 
@@ -359,6 +360,8 @@ is_scripts_installed () {
 
 install_scripts () {
     git clone $SCRIPTS_REPO $SCRIPTS_PATH
+    
+    ensure_bash_after_login_script
 }
 
 install_coretools () {
@@ -381,6 +384,15 @@ verify_coretool () {
         print "  ${SYMBOL_OK} $service"
     else
         print "  ${SYMBOL_ERROR} $service"
+    fi
+}
+
+ensure_bash_after_login_script () {
+    local bash_script="/etc/bash.bashrc"
+    local bash_script_content=$(cat $bash_script | grep "sh $BASH_AFTER_LOGIN_SCRIPT_PATH")
+
+    if [ -z "$bash_script_content" ]; then
+        echo "sh $BASH_AFTER_LOGIN_SCRIPT_PATH" >> $bash_script
     fi
 }
 

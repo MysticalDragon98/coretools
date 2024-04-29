@@ -1,2 +1,3 @@
 BASE_PATH=/home/admin
-SCRIPTS_PATH=/home/admin/.scripts
+SCRIPTS_PATH=$BASE_PATH/.scripts
+AFTER_LOGIN_SCRIPT_PATH=$SCRIPTS_PATH/after-login.sh

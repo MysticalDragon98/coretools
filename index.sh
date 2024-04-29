@@ -32,6 +32,7 @@
 . ./lib/modules/coretools/install_coretools.sh
 . ./lib/modules/coretools/verify_coretools.sh
 . ./lib/modules/coretools/verify_coretool.sh
+. ./lib/modules/bash/ensure_bash_after_login_script.sh
 #* Imports
 
 
