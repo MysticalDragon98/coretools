@@ -2,7 +2,7 @@ ensure_admin_sudo () {
     local user=$1
     local sudoers_file="/etc/sudoers.d/admin"
 
-    if $(is_user_sudoer $user); then
+    if $(is_user_sudoer $user) == "true"; then
         print ${SYMBOL_OK} "Admin user $user is a sudoer"
     else
         print "Setting $user as a sudoer..."
