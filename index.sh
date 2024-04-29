@@ -44,7 +44,10 @@ install_services
 init_fs $BASE_PATH
 
 init_admin_user admin
+echo "Changing users..."
 set_user admin
+echo "User changed to admin"
+echo $(whoami)
 
 verify_coretools
 install_coretools
