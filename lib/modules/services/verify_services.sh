@@ -10,5 +10,5 @@ verify_services () {
     verify_service "$(is_snap_installed)" "Snap"
     verify_service "$(is_certbot_installed)" "Certbot"
     verify_service "$(is_jq_installed)" "JQ"
-    verify_service "$(is_sysstat_installed)" "JQ"
+    verify_service "$(is_sysstat_installed)" "Sysstat"
 }
