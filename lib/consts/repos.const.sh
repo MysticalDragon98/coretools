@@ -1,0 +1,1 @@
+SCRIPTS_REPO=https://github.com/MysticalDragon98/coretools-scripts

@@ -9,6 +9,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 
 ### Added
+- [2024-04-29] Add scripts coretools to ~/.scripts
+- [2024-04-29] Add `Coretools` installations
 - [2024-04-29] Admin user is now allowed as sudoer
 - [2024-04-28] Add NodeJS as default dependency
 - [2024-04-28] Add support for snap & certbot

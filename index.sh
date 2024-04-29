@@ -3,6 +3,7 @@
 . ./lib/consts/symbols.const.sh
 . ./lib/consts/files.const.sh
 . ./lib/consts/paths.const.sh
+. ./lib/consts/repos.const.sh
 . ./lib/modules/stdout/print.sh
 . ./lib/modules/apt/apt_update.sh
 . ./lib/modules/apt/apt_install.sh
@@ -27,6 +28,10 @@
 . ./lib/modules/sudo/set_user_as_sudoer.sh
 . ./lib/modules/sudo/is_user_sudoer.sh
 . ./lib/modules/users/ensure_admin_sudo.sh
+. ./lib/modules/coretools/scripts.install.sh
+. ./lib/modules/coretools/install_coretools.sh
+. ./lib/modules/coretools/verify_coretools.sh
+. ./lib/modules/coretools/verify_coretool.sh
 #* Imports
 
 
@@ -36,3 +41,6 @@ install_services
 
 init_fs $BASE_PATH
 init_admin_user admin
+
+verify_coretools
+install_coretools

@@ -12,6 +12,9 @@ FILE_BASHRC="https://raw.githubusercontent.com/MysticalDragon98/coretools/master
 FILE_PROFILE="https://raw.githubusercontent.com/MysticalDragon98/coretools/master/files/.profile?token=$(date +%s)"
 
 BASE_PATH=/home/admin
+SCRIPTS_PATH=/home/.scripts
+
+SCRIPTS_REPO=https://github.com/MysticalDragon98/coretools-scripts
 
 print () {
     local message="$@"
@@ -346,9 +349,47 @@ ensure_admin_sudo () {
     fi
 }
 
+is_scripts_installed () {
+    if [ -d $SCRIPTS_PATH ]; then
+        echo "true"
+    else
+        echo "false"
+    fi
+}
+
+install_scripts () {
+    git clone $SCRIPTS_REPO $SCRIPTS_PATH
+}
+
+install_coretools () {
+    if ! $(is_scripts_installed) -eq "true"; then
+        install_scripts
+    fi
+}
+
+verify_services () {
+    print "Coretools:"
+    
+    verify_coretool "$(is_scripts_installed)" "Bash Scripts"
+}
+
+verify_coretool () {
+    local service=$2
+    local condition=$1
+    
+    if "$condition" -eq "true"; then
+        print "  ${SYMBOL_OK} $service"
+    else
+        print "  ${SYMBOL_ERROR} $service"
+    fi
+}
+
 #? Main
 verify_services
 install_services
 
 init_fs $BASE_PATH
 init_admin_user admin
+
+verify_coretools
+install_coretools
