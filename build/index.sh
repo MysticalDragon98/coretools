@@ -133,6 +133,20 @@ install_yarn () {
     print ${SYMBOL_OK} "Yarn installed."
 }
 
+is_make_installed () {
+    if command -v make >/dev/null 2>&1; then
+        echo "true"
+    else
+        echo "false"
+    fi
+}
+
+install_make () {
+    print "Installing make..."
+    apt_install make
+    print ${SYMBOL_OK} "Make installed."
+}
+
 is_tsnode_installed () {
     if command -v ts-node >/dev/null 2>&1; then
         echo "true"
@@ -252,6 +266,10 @@ install_services () {
         install_sysstat
     fi
 
+    if ! $(is_make_installed) -eq "true"; then
+        install_make
+    fi
+
     print "${SYMBOL_OK} All services has been installed."
 }
 
@@ -277,7 +295,8 @@ verify_services () {
     verify_service "$(is_snap_installed)" "Snap"
     verify_service "$(is_certbot_installed)" "Certbot"
     verify_service "$(is_jq_installed)" "JQ"
-    verify_service "$(is_sysstat_installed)" "JQ"
+    verify_service "$(is_sysstat_installed)" "Sysstat"
+    verify_service "$(is_make_installed)" "Make"
 }
 
 init_fs () {
@@ -300,8 +319,8 @@ create_user () {
     sudo useradd --shell /bin/bash $user
     sudo mkdir /home/$user
 
-    sudo chown -R $user:$user /home/$user
     sudo mkdir -p /home/$user/.ssh
+    sudo chown -R $user:$user /home/$user
 }
 
 exists_user () {
@@ -400,7 +419,7 @@ is_scripts_installed () {
 
 install_scripts () {
     sudo git clone $SCRIPTS_REPO $SCRIPTS_PATH
-    sudo chown -R $ADMIN_USER_VAR:$ADMIN_USER_VAR $SCRIPTS_PATH
+    chown -R $ADMIN_USER_VAR:$ADMIN_USER_VAR $SCRIPTS_PATH
     
     ensure_bash_after_login_script
 }
@@ -442,6 +461,7 @@ verify_services
 install_services
 
 init_fs $BASE_PATH
+
 init_admin_user admin
 
 verify_coretools
