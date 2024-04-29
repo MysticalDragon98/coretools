@@ -295,7 +295,7 @@ init_admin_bashrc () {
 }
 
 init_admin_user () {
-    user=$1
+    local user=$1
 
     if $(exists_user $user) -eq "true"; then
         print ${SYMBOL_OK} "Admin user $user is setup"
@@ -322,12 +322,15 @@ is_user_sudoer () {
 
     if [ -f $sudoers_file ]; then
         local sudoers=$(sudo cat $sudoers_file | grep $user | tr -d '[:space:]')
+        
         if [ "$sudoers" == "$user ALL=(ALL) NOPASSWD:ALL" ]; then
-            return "true"
+            echo "true"
+        else
+            echo "false"
         fi
+    else
+        echo "false"
     fi
-
-    return "false"
 }
 
 ensure_admin_sudo () {
