@@ -1,39 +1,31 @@
-#? 1. Imports
-##? 1.1 Constants
-    . ./consts/colors.const.sh
-    . ./consts/styles.const.sh
-    . ./consts/symbols.const.sh
-    . ./consts/files.const.sh
-    . ./consts/paths.const.sh
-##? 1.2 Modules
-###? 1.2.1 Stdout
-    . ./modules/stdout/print.sh
-###? 1.2.2 Apt
-    . ./modules/apt/apt_update.sh
-    . ./modules/apt/apt_install.sh
-###? 1.2.3 Nginx
-    . ./modules/install/nginx.install.sh
-    . ./modules/install/supervisor.install.sh
-    . ./modules/install/git.install.sh
-    . ./modules/install/node.install.sh
-    . ./modules/install/yarn.install.sh
-    . ./modules/install/ts-node.install.sh
-    . ./modules/install/snap.install.sh
-    . ./modules/install/certbot.install.sh
-###? 1.2.4 Prompts
-    . ./modules/prompts/prompt_yn.sh
-    . ./modules/prompts/prompt_installation_yn.sh
-###? 1.2.5 Services
-    . ./modules/services/install_services.sh
-    . ./modules/services/verify_service.sh
-    . ./modules/services/verify_services.sh
-###? 1.2.6 FS
-    . ./modules/fs/init_fs.sh
-###? 1.2.7 Users
-    . ./modules/users/create_user.sh
-    . ./modules/users/exists_user.sh
-    . ./modules/users/init_admin_bashrc.sh
-    . ./modules/users/init_admin_user.sh
+. ./lib/consts/colors.const.sh
+. ./lib/consts/styles.const.sh
+. ./lib/consts/symbols.const.sh
+. ./lib/consts/files.const.sh
+. ./lib/consts/paths.const.sh
+. ./lib/modules/stdout/print.sh
+. ./lib/modules/apt/apt_update.sh
+. ./lib/modules/apt/apt_install.sh
+. ./lib/modules/install/nginx.install.sh
+. ./lib/modules/install/supervisor.install.sh
+. ./lib/modules/install/git.install.sh
+. ./lib/modules/install/node.install.sh
+. ./lib/modules/install/yarn.install.sh
+. ./lib/modules/install/ts-node.install.sh
+. ./lib/modules/install/snap.install.sh
+. ./lib/modules/install/certbot.install.sh
+. ./lib/modules/prompts/prompt_yn.sh
+. ./lib/modules/prompts/prompt_installation_yn.sh
+. ./lib/modules/services/install_services.sh
+. ./lib/modules/services/verify_service.sh
+. ./lib/modules/services/verify_services.sh
+. ./lib/modules/fs/init_fs.sh
+. ./lib/modules/users/create_user.sh
+. ./lib/modules/users/exists_user.sh
+. ./lib/modules/users/init_admin_bashrc.sh
+. ./lib/modules/users/init_admin_user.sh
+#* Imports
+
 
 #? Main
 verify_services
