@@ -5,6 +5,6 @@ PS1="${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[0
 PATH=$PATH:$HOME/.bin
 cd ~
 
-if [ -f "$SCRIPTS_PATH/index.sh" ]; then
-    source $SCRIPTS_PATH/index.sh
+if [ -f "~/index.sh" ]; then
+    source ~/index.sh
 fi
