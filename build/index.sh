@@ -308,6 +308,40 @@ init_admin_user () {
     init_admin_bashrc $user
 }
 
+set_user_as_sudoer () {
+    local user=$1
+    local sudoers_file="/etc/sudoers.d/admin"
+
+    echo "$user ALL=(ALL) NOPASSWD:ALL" > $sudoers_file
+}
+
+is_user_sudoer () {
+    local user=$1
+    local sudoers_file="/etc/sudoers.d/admin"
+
+    if [ -f $sudoers_file ]; then
+        local sudoers=$(cat $sudoers_file | grep $user | tr -d '[:space:]')
+        if [ "$sudoers" == "$user ALL=(ALL) NOPASSWD:ALL" ]; then
+            return "true"
+        fi
+    fi
+
+    return "false"
+}
+
+ensure_admin_sudo () {
+    local user=$1
+    local sudoers_file="/etc/sudoers.d/admin"
+
+    if $(is_user_sudoer $user); then
+        print ${SYMBOL_OK} "Admin user $user is a sudoer"
+    else
+        print "Setting $user as a sudoer..."
+        set_user_as_sudoer $user
+        print ${SYMBOL_OK} "Admin user $user is now a sudoer."
+    fi
+}
+
 #? Main
 verify_services
 install_services

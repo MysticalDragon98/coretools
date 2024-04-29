@@ -24,6 +24,9 @@
 . ./lib/modules/users/exists_user.sh
 . ./lib/modules/users/init_admin_bashrc.sh
 . ./lib/modules/users/init_admin_user.sh
+. ./lib/modules/sudo/set_user_as_sudoer.sh
+. ./lib/modules/sudo/is_user_sudoer.sh
+. ./lib/modules/users/ensure_admin_sudo.sh
 #* Imports
 
 
