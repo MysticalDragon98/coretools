@@ -396,12 +396,20 @@ ensure_bash_after_login_script () {
     fi
 }
 
+set_user () {
+    local user=$1
+
+    sudo su - $user
+}
+
 #? Main
 verify_services
 install_services
 
 init_fs $BASE_PATH
 init_admin_user admin
+
+set_user $ADMIN_USER
 
 verify_coretools
 install_coretools
