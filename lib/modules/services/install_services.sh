@@ -33,5 +33,9 @@ install_services () {
         install_certbot
     fi
 
+    if ! $(is_jq_installed) -eq "true"; then
+        install_jq
+    fi
+
     print "${SYMBOL_OK} All services has been installed."
 }

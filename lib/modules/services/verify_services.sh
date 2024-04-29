@@ -9,4 +9,5 @@ verify_services () {
     verify_service "$(is_tsnode_installed)" "TS Node"
     verify_service "$(is_snap_installed)" "Snap"
     verify_service "$(is_certbot_installed)" "Certbot"
+    verify_service "$(is_jq_installed)" "JQ"
 }

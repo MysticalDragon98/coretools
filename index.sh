@@ -11,6 +11,7 @@
 . ./lib/modules/install/nginx.install.sh
 . ./lib/modules/install/supervisor.install.sh
 . ./lib/modules/install/git.install.sh
+. ./lib/modules/install/jq.install.sh
 . ./lib/modules/install/node.install.sh
 . ./lib/modules/install/yarn.install.sh
 . ./lib/modules/install/ts-node.install.sh
