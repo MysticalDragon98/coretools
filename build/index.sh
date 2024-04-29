@@ -399,7 +399,7 @@ ensure_bash_after_login_script () {
 set_user () {
     local user=$1
 
-    sudo su - $user
+    sudo su $user
 }
 
 #? Main
