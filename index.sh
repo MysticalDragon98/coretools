@@ -42,9 +42,9 @@ verify_services
 install_services
 
 init_fs $BASE_PATH
-init_admin_user admin
 
-set_user $ADMIN_USER
+init_admin_user admin
+set_user admin
 
 verify_coretools
 install_coretools
