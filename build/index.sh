@@ -14,7 +14,11 @@ FILE_BASHRC="https://raw.githubusercontent.com/MysticalDragon98/coretools/master
 FILE_PROFILE="https://raw.githubusercontent.com/MysticalDragon98/coretools/master/files/.profile?token=$(date +%s)"
 
 BASE_PATH=/home/$ADMIN_USER_VAR
+
 SCRIPTS_PATH=$BASE_PATH/.scripts
+SUPERVISOR_CONF_PATH=$BASE_PATH/conf/supervisor
+# SUPERVISOR_SOCK_PATH=
+
 AFTER_LOGIN_SCRIPT_PATH=$SCRIPTS_PATH/after-login.sh
 
 SCRIPTS_REPO=https://github.com/MysticalDragon98/coretools-scripts
@@ -63,11 +67,12 @@ SUPERVISOR_FOLDER=/etc/supervisor
 SUPERVISOR_CONF_FILE=$SUPERVISOR_FOLDER/supervisord.conf
 
 is_supervisor_installed () {
-    if [ -f "$SUPERVISOR_CONF_FILE" ]; then
-        echo true
+    if command -v supervisorctl >/dev/null 2>&1; then
+        echo "true"
     else
-        echo false
+        echo "false"
     fi
+}
 }
 
 install_supervisor () {
@@ -456,6 +461,37 @@ ensure_bash_after_login_script () {
     fi
 }
 
+ensure_supervisor_conf () {
+    if $(ensure_line /etc/supervisor/supervisord.conf "files = $SUPERVISOR_PATH" "Adding supervisor configuration path to supervisord.conf") -eq "true"; then
+        supervisorctl reread
+        supervisorctl update
+    fi
+}
+
+ensure_settings () {
+    ensure_supervisor_conf
+}
+
+ensure_line () {
+    local file=$1
+    local line=$2
+    local message=$3
+
+    if ! grep -q "$line" "$file"; then
+        if [ -n "$message" ]; then
+            echo "$message"
+        fi
+        echo "$line" >> "$file"
+        echo "true"
+    else
+        echo "false"
+    fi
+}
+
+ensure_supervisor_admin_permissions () {
+    sudo chown -R $USER:$USER $SUPERVISOR_SOCKFILE
+}
+
 #? Main
 verify_services
 install_services
@@ -466,3 +502,5 @@ init_admin_user admin
 
 verify_coretools
 install_coretools
+
+ensure_settings
