@@ -7,7 +7,7 @@ ensure_line () {
         if [ -n "$message" ]; then
             echo "$message"
         fi
-        echo "$line" >> "$file"
+        append "$file" "$line"
         echo "true"
     else
         echo "false"
