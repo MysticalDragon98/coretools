@@ -8,7 +8,6 @@ is_supervisor_installed () {
         echo "false"
     fi
 }
-}
 
 install_supervisor () {
     print "Installing Supervisor..."
