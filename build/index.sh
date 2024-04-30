@@ -380,7 +380,7 @@ set_user_as_sudoer () {
     local user=$1
     local sudoers_file="/etc/sudoers.d/admin"
 
-    sudo echo "$user ALL=(ALL) NOPASSWD:ALL" > $sudoers_file
+    append $sudoers_file "$user ALL=(ALL) NOPASSWD:ALL"
 }
 
 is_user_sudoer () {
@@ -456,7 +456,7 @@ ensure_bash_after_login_script () {
     local bash_script_content=$(cat $bash_script | grep "sh $AFTER_LOGIN_SCRIPT_PATH")
 
     if [ -z "$bash_script_content" ]; then
-        sudo echo "sh $AFTER_LOGIN_SCRIPT_PATH" | sudo tee -a $bash_script > /dev/null
+        append "$bash_script" "sh $AFTER_LOGIN_SCRIPT_PATH"
     fi
 }
 
@@ -481,7 +481,7 @@ ensure_line () {
         if [ -n "$message" ]; then
             echo "$message"
         fi
-        echo "$line" >> "$file"
+        append "$file" "$line"
         echo "true"
     else
         echo "false"
@@ -497,6 +497,13 @@ own () {
     local path=$1
 
     sudo chown -R $ADMIN_USER_VAR:$ADMIN_USER_VAR $path
+}
+
+append () {
+    local file=$1
+    local msg=$2
+
+    sudo echo "$msg" | sudo tee -a "$file" > /dev/null
 }
 
 #? Main
