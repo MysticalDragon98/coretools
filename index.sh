@@ -42,6 +42,7 @@
 . ./lib/modules/fs/ensure_line.sh
 . ./lib/modules/supervisor/ensure_supervisor_admin_permissions.sh
 . ./lib/modules/ownership/own.sh
+. ./lib/modules/fs/append.sh
 #* Imports
 
 
