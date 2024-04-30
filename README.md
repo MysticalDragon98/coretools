@@ -25,3 +25,4 @@ Coretools creates an /home/admin sudoer user that is owner of the services
 - Creates the `admin` user in the Linux Subsystem
 - Sets up the `admin` as sudoer at /etc/sudoers.d/admin
 - Adds the after-login.sh script to `/etc/bash.bashrc` so it executes each time someone logins
+- Adds `~/conf/supervisor` dir to the /etc/supervisor/supervisord.conf

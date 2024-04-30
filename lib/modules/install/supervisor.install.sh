@@ -2,11 +2,12 @@ SUPERVISOR_FOLDER=/etc/supervisor
 SUPERVISOR_CONF_FILE=$SUPERVISOR_FOLDER/supervisord.conf
 
 is_supervisor_installed () {
-    if [ -f "$SUPERVISOR_CONF_FILE" ]; then
-        echo true
+    if command -v supervisorctl >/dev/null 2>&1; then
+        echo "true"
     else
-        echo false
+        echo "false"
     fi
+}
 }
 
 install_supervisor () {

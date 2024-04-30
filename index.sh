@@ -37,6 +37,10 @@
 . ./lib/modules/coretools/verify_coretools.sh
 . ./lib/modules/coretools/verify_coretool.sh
 . ./lib/modules/bash/ensure_bash_after_login_script.sh
+. ./lib/modules/supervisor/ensure_supervisor_conf.sh
+. ./lib/modules/services/ensure_settings.sh
+. ./lib/modules/fs/ensure_line.sh
+. ./lib/modules/fs/ensure_supervisor_admin_permissions.sh
 #* Imports
 
 
@@ -50,3 +54,5 @@ init_admin_user admin
 
 verify_coretools
 install_coretools
+
+ensure_settings
