@@ -9,6 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 
 ### Added
+- [2024-04-30] Ensure that the admin has permissions for the supervisord sock file
 - [2024-04-30] Install supervisor ~/conf/supervisor folder to supervisor index
 - [2024-04-29] Add make (Makefile) as dependency
 - [2024-04-29] Add systat as dependency

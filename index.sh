@@ -40,7 +40,8 @@
 . ./lib/modules/supervisor/ensure_supervisor_conf.sh
 . ./lib/modules/services/ensure_settings.sh
 . ./lib/modules/fs/ensure_line.sh
-. ./lib/modules/fs/ensure_supervisor_admin_permissions.sh
+. ./lib/modules/supervisor/ensure_supervisor_admin_permissions.sh
+. ./lib/modules/ownership/own.sh
 #* Imports
 
 

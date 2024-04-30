@@ -17,7 +17,7 @@ BASE_PATH=/home/$ADMIN_USER_VAR
 
 SCRIPTS_PATH=$BASE_PATH/.scripts
 SUPERVISOR_CONF_PATH=$BASE_PATH/conf/supervisor
-# SUPERVISOR_SOCK_PATH=
+SUPERVISOR_SOCK_PATH=/var/run/supervisor.sock
 
 AFTER_LOGIN_SCRIPT_PATH=$SCRIPTS_PATH/after-login.sh
 
@@ -469,6 +469,7 @@ ensure_supervisor_conf () {
 
 ensure_settings () {
     ensure_supervisor_conf
+    ensure_supervisor_admin_permissions
 }
 
 ensure_line () {
@@ -488,7 +489,14 @@ ensure_line () {
 }
 
 ensure_supervisor_admin_permissions () {
-    sudo chown -R $USER:$USER $SUPERVISOR_SOCKFILE
+    echo "Ensuring that $SUPERVISOR_SOCK_PATH belongs to the $ADMIN user"
+    own $SUPERVISOR_SOCK_PATH
+}
+
+own () {
+    local path=$1
+
+    sudo chown -R $ADMIN_USER_VAR:$ADMIN_USER_VAR $path
 }
 
 #? Main
