@@ -16,6 +16,7 @@ FILE_PROFILE="https://raw.githubusercontent.com/MysticalDragon98/coretools/maste
 BASE_PATH=/home/$ADMIN_USER_VAR
 
 SCRIPTS_PATH=$BASE_PATH/.scripts
+BIN_PATH=$BASE_PATH/.bin
 
 SUPERVISOR_CONF_PATH=$BASE_PATH/conf/supervisor
 SUPERVISOR_SOCK_PATH=/var/run/supervisor.sock
@@ -23,6 +24,7 @@ SUPERVISOR_SOCK_PATH=/var/run/supervisor.sock
 AFTER_LOGIN_SCRIPT_PATH=$SCRIPTS_PATH/after-login.sh
 
 SCRIPTS_REPO=https://github.com/MysticalDragon98/coretools-scripts
+BIN_REPO=https://github.com/MysticalDragon98/coretools-bin
 
 print () {
     local message="$@"
@@ -429,6 +431,21 @@ install_scripts () {
     ensure_bash_after_login_script
 }
 
+is_bin_installed () {
+    if [ -d "$BIN_PATH/.git" ]; then
+        echo "true"
+    else
+        echo "false"
+    fi
+}
+
+install_bin () {
+    sudo git clone $BIN_REPO $BIN_PATH
+    chown -R $ADMIN_USER_VAR:$ADMIN_USER_VAR $BIN_PATH
+    
+    ensure_bash_after_login_script
+}
+
 install_coretools () {
     if ! $(is_scripts_installed) -eq "true"; then
         install_scripts
@@ -439,6 +456,7 @@ verify_coretools () {
     print "Coretools:"
 
     verify_coretool "$(is_scripts_installed)" "Bash Scripts"
+    verify_coretool "$(is_bin_installed)" "Bin"
 }
 
 verify_coretool () {

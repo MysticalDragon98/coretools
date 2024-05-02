@@ -33,6 +33,7 @@
 . ./lib/modules/sudo/is_user_sudoer.sh
 . ./lib/modules/users/ensure_admin_sudo.sh
 . ./lib/modules/coretools/scripts.install.sh
+. ./lib/modules/coretools/bin.install.sh
 . ./lib/modules/coretools/install_coretools.sh
 . ./lib/modules/coretools/verify_coretools.sh
 . ./lib/modules/coretools/verify_coretool.sh
