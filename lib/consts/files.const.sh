@@ -1,2 +1,2 @@
-FILE_BASHRC="https://raw.githubusercontent.com/MysticalDragon98/coretools/master/files/.bashrc?token=$(date +%s)"
-FILE_PROFILE="https://raw.githubusercontent.com/MysticalDragon98/coretools/master/files/.profile?token=$(date +%s)"
+FILE_BASHRC="https://raw.githubusercontent.com/MysticalDragon98/coretools/master/lib/files/.bashrc?token=$(date +%s)"
+FILE_PROFILE="https://raw.githubusercontent.com/MysticalDragon98/coretools/master/lib/files/.profile?token=$(date +%s)"
