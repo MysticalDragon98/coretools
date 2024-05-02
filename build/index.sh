@@ -10,12 +10,13 @@ SYMBOL_OK=$COLOR_GREEN'✔'$STYLE_NONE
 SYMBOL_ERROR=$COLOR_RED'✖'$STYLE_NONE
 SYMBOL_QUESTION=$COLOR_BLUE'?'$STYLE_NONE
 
-FILE_BASHRC="https://raw.githubusercontent.com/MysticalDragon98/coretools/master/files/.bashrc?token=$(date +%s)"
-FILE_PROFILE="https://raw.githubusercontent.com/MysticalDragon98/coretools/master/files/.profile?token=$(date +%s)"
+FILE_BASHRC="https://raw.githubusercontent.com/MysticalDragon98/coretools/master/lib/files/.bashrc?token=$(date +%s)"
+FILE_PROFILE="https://raw.githubusercontent.com/MysticalDragon98/coretools/master/lib/files/.profile?token=$(date +%s)"
 
 BASE_PATH=/home/$ADMIN_USER_VAR
 
 SCRIPTS_PATH=$BASE_PATH/.scripts
+
 SUPERVISOR_CONF_PATH=$BASE_PATH/conf/supervisor
 SUPERVISOR_SOCK_PATH=/var/run/supervisor.sock
 
@@ -310,9 +311,9 @@ init_fs () {
     mkdir -p $folder/services
     mkdir -p $folder/logs
     
-    mkdir -p $folder/config
-    mkdir -p $folder/config/nginx
-    mkdir -p $folder/config/supervisor
+    mkdir -p $folder/conf
+    mkdir -p $folder/conf/nginx
+    mkdir -p $folder/conf/supervisor
 
     print "${SYMBOL_OK} File system initialized at $folder..."
 }
@@ -461,7 +462,7 @@ ensure_bash_after_login_script () {
 }
 
 ensure_supervisor_conf () {
-    if $(ensure_line /etc/supervisor/supervisord.conf "files = $SUPERVISOR_PATH" "Adding supervisor configuration path to supervisord.conf") -eq "true"; then
+    if $(ensure_line /etc/supervisor/supervisord.conf "files = $SUPERVISOR_CONF_PATH" "Adding supervisor configuration path to supervisord.conf") -eq "true"; then
         supervisorctl reread
         supervisorctl update
     fi
