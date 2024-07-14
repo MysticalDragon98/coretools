@@ -1,3 +1,4 @@
+-n
 ADMIN_USER_VAR=admin
 
 COLOR_GREEN='\033[38;5;118m'
@@ -532,12 +533,3 @@ append () {
 #? Main
 verify_services
 install_services
-
-init_fs $BASE_PATH
-
-init_admin_user admin
-
-verify_coretools
-install_coretools
-
-ensure_settings

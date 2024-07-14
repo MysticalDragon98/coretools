@@ -50,12 +50,3 @@
 #? Main
 verify_services
 install_services
-
-init_fs $BASE_PATH
-
-init_admin_user admin
-
-verify_coretools
-install_coretools
-
-ensure_settings
