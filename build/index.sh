@@ -1,4 +1,3 @@
--n
 ADMIN_USER_VAR=admin
 
 COLOR_GREEN='\033[38;5;118m'

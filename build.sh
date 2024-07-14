@@ -1,5 +1,4 @@
 BUILD_FILE="build/index.sh"
-echo -n > $BUILD_FILE
 
 write () {
     echo "$1" >> $BUILD_FILE
